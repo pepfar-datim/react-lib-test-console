@@ -1,4 +1,4 @@
-import {Drawer, List, ListItem, ListItemText} from "@material-ui/core";
+import {Divider, Drawer, List, ListItem, ListItemText, withStyles} from "@material-ui/core";
 import React, {CSSProperties} from "react";
 import {CustomMethod} from "../devTools";
 import {Logo} from "./logo";
@@ -10,12 +10,22 @@ const styles = {
     } as CSSProperties
 };
 
-export function Menu({open, customMethods, onClose, buildTag}:{open:boolean, customMethods:CustomMethod[], onClose:()=>void, buildTag:string}){
-    return <Drawer open={open} anchor='right' onClose={onClose}> <br/><br/><br/>
+let DevToolsDrawer = withStyles({
+    paper: {
+        minWidth: 200,
+        maxWidth: 400,
+        padding:'55px 10px'
+    }
+})(Drawer);
+
+export function Menu({open, customMethods, onClose, buildName, buildDate}:{open:boolean, customMethods:CustomMethod[], onClose:()=>void, buildName:string, buildDate:Date}){
+    return <DevToolsDrawer open={open} anchor='right' onClose={onClose}>
         <Logo/>
-        <BuildTag buildTag={buildTag}/>
+        <Divider/>
+        <BuildTag buildName={buildName} buildDate={buildDate}/>
+        <Divider/>
         <List dense={true}>
             {customMethods.map(({name,method}:CustomMethod)=><ListItem key={name} button onClick={method}><ListItemText>{name}</ListItemText></ListItem>)}
         </List>
-    </Drawer>
+    </DevToolsDrawer>
 }

@@ -1,12 +1,22 @@
 # DHIS2 Dev Tools
-Do you need to give your testers superpowers?
-You can automatize some tasks such as filling out search forms, clicking buttons, etc.
 
-Then using this library you can easily give super-user access to these methods.
+**What does this library solve?**
+1. Did you ever ask QA to test your app but they were testing an old version on another server?
+2. Does your QA team find themselves replicating the same scenario in your app over and over?
+
+**Solution for #1**  
+If you add `<DevTools>` to your app then your tester can just press `~` on keyboard to open developers only console. There they can double-check build name & date of your app.
+
+**Solution for #2**  
+You can automate any task in JavaScript as a function and then inject the function into `<DevTools>`. Your tester can then click a button in `<DevTools>` and save himself a lot of clicking.  
+We're using this for pre-filling elaborate search dialogs for each test scenario.
+
+![Example use](docs/example.png)
 
 ## Usage
 
-You can inject any method. Anything you need to automate in your app. Just wrap it into a method and inject into `Dev Tools`.
+You can inject any method. Anything you need to automate in your app. Just wrap it into a method and inject
+into `Dev Tools`.
 
 In the below example we want to automate searches by calling `this.search` method with different parameters.
 
@@ -21,15 +31,15 @@ export default class SearchForm extends React.Component {
         ];
         searches.forEach(registerDevMethod);
     }
-    
-    search(ou:string, period:string){
+
+    search(ou: string, period: string) {
         // your code
     }
-    
-    render(){
+
+    render() {
         return <React.Fragment>
             <MyAwesomeSearchForm onSearch={this.search}/>
-            <DevTools/>
+            <DevTools buildName={'Dedupe search added'} buildDate={new Date()}/>
         </React.Fragment>
     }
 }
