@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {DevTools, registerDevMethod} from "../../src";
-import {apiInit} from "@dhis2-app/api";
+import {apiInit} from "@pepfar-react-lib/http-tools";
 import {HeaderBar} from "./headerBar";
 
 apiInit('https://dev-jakub.datim.org/',process.env.NODE_ENV);

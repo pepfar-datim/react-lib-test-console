@@ -1,6 +1,5 @@
 import React, {CSSProperties} from "react";
-import {Drawer, List, ListItem, ListItemText} from "@material-ui/core";
-import {getData} from "@dhis2-app/api";
+import {getData} from "@pepfar-react-lib/http-tools";
 import {Menu} from "./components/menu";
 
 const styles = {

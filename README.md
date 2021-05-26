@@ -21,7 +21,7 @@ into `Dev Tools`.
 In the below example we want to automate searches by calling `this.search` method with different parameters.
 
 ```javascript
-import {DevTools, registerDevMethod} from "@dhis2-app/dev-tools";
+import {DevTools, registerDevMethod} from "@pepfar-react-lib/test-console";
 
 export default class SearchForm extends React.Component {
     constructor(props) {
