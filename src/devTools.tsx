@@ -20,7 +20,7 @@ export function registerDevMethod(method:CustomMethod) {
     customMethods.push(method);
 }
 
-export class DevTools extends React.Component<{buildName:string, buildDate:Date}, {isSuperUser:boolean, menuOpen: boolean}>{
+export class DevTools extends React.Component<{buildName:string, buildDate:Date, children?}, {isSuperUser:boolean, menuOpen: boolean}>{
     constructor(props:any) {
         super(props);
         this.checkSuperUser();
@@ -29,7 +29,7 @@ export class DevTools extends React.Component<{buildName:string, buildDate:Date}
     }
 
     keypress = (e:React.KeyboardEvent<Element>)=>{
-        if (e.key!==`\``) return;
+        if (e.key!==`\``||!e.ctrlKey) return;
         if (!this.state.isSuperUser) console.log(`Can't open Dev-Tools. Not a superuser.`)
         this.toggleMenu();
     }
@@ -48,7 +48,9 @@ export class DevTools extends React.Component<{buildName:string, buildDate:Date}
         if (process.env.NODE_ENV==='test') return null;
         if(!this.state.isSuperUser) return null;
         return <div style={styles.root}>
-            <Menu open={this.state.menuOpen} onClose={this.toggleMenu} customMethods={customMethods} buildName={this.props.buildName} buildDate={this.props.buildDate}/>
+            <Menu open={this.state.menuOpen} onClose={this.toggleMenu} customMethods={customMethods} buildName={this.props.buildName} buildDate={this.props.buildDate}>
+                {this.props.children}
+            </Menu>
         </div>;
     }
 }
