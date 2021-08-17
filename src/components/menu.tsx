@@ -1,6 +1,6 @@
 import {Divider, Drawer, List, ListItem, ListItemText, Typography, withStyles} from "@material-ui/core";
 import React, {CSSProperties} from "react";
-import {CustomMethod} from "../devTools";
+import {CustomMethod} from "../testConsole";
 import {Logo} from "./logo";
 import {BuildTag} from "./buildTag";
 
@@ -24,7 +24,7 @@ export function Menu({open, customMethods, onClose, buildName, buildDate, childr
         <Divider/>
         <BuildTag buildName={buildName} buildDate={buildDate}/>
         <Divider/>
-        <Typography style={{fontWeight: 500}}>Custom functions</Typography>
+        <Typography style={{fontWeight: 500}}>Custom Functions</Typography>
         <List dense={true}>
             {customMethods.map(({name,method}:CustomMethod)=><ListItem key={name} button onClick={method}><ListItemText>{name}</ListItemText></ListItem>)}
         </List>

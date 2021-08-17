@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {DevTools, registerDevMethod} from "../../src";
+import {TestConsole, registerDevMethod} from "../../src";
 import {apiInit} from "@pepfar-react-lib/http-tools";
 import {HeaderBar} from "./headerBar";
 
@@ -12,7 +12,7 @@ ReactDOM.render(
     <React.Fragment>
         DevTools Example
         <HeaderBar/>
-        <DevTools buildName={'test build tag'} buildDate={new Date()}/>
+        <TestConsole buildName={'test build tag'} buildDate={new Date()}/>
     </React.Fragment>,
     document.getElementById('root')
 );

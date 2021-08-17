@@ -20,7 +20,7 @@ export function registerDevMethod(method:CustomMethod) {
     customMethods.push(method);
 }
 
-export class DevTools extends React.Component<{buildName:string, buildDate:Date, children?}, {isSuperUser:boolean, menuOpen: boolean}>{
+export class TestConsole extends React.Component<{buildName?:string, buildDate:Date, children?}, {isSuperUser:boolean, menuOpen: boolean}>{
     constructor(props:any) {
         super(props);
         this.checkSuperUser();

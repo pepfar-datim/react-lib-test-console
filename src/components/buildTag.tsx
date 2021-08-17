@@ -1,18 +1,24 @@
 import React from "react";
-import {Chip, Typography} from "@material-ui/core";
+import {Chip, List, ListItem, Typography} from "@material-ui/core";
 
 const styles = {
     label:{
-        fontWeight: 600
+        fontWeight: 500
     }
 }
 
-export function BuildTag({buildName, buildDate}:{buildName:string, buildDate: Date}){
+export function BuildTag({buildName, buildDate}:{buildName?:string, buildDate: Date}){
     return <React.Fragment>
-        <Typography variant='caption' style={styles.label}>app build name</Typography>
-        <Typography variant='caption'>{buildName}</Typography>
-        <Typography variant='caption' style={styles.label}>app build date</Typography>
-        <Typography variant='caption'>{buildDate.toDateString()}</Typography>
+        {buildName &&<div>
+            <Typography variant='caption' style={styles.label}>Build Name</Typography>
+            <Typography variant='caption'>{buildName}</Typography>
+        </div>}
+        <Typography variant='caption' style={styles.label}>Build Date</Typography>
+        <List>
+            <ListItem>
+                <Typography variant='caption'>{buildDate}</Typography>
+            </ListItem>
+        </List>
     </React.Fragment>
 
 }

@@ -1,1 +1,1 @@
-export * from "./devTools";
+export * from "./testConsole";
