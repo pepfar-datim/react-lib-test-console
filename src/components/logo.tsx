@@ -3,10 +3,9 @@ import React from 'react';
 
 const styles = {
     root: {
-        fontSize: 20
     },
 }
 
 export function Logo(){
-    return <Typography style={styles.root}>Test Console</Typography>
+    return <Typography variant={'h5'}>Test Console</Typography>
 }
