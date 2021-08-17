@@ -1,6 +1,8 @@
 import React, {CSSProperties} from "react";
 import {getData} from "@pepfar-react-lib/http-tools";
-import {Menu} from "./components/menu";
+// import {Menu} from "./components/menu";
+
+const Menu = React.lazy(() => import('./components/menu') as any);
 
 const styles = {
     root: {
