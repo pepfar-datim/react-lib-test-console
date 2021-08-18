@@ -1,8 +1,9 @@
-import React, {CSSProperties} from "react";
+import React, {CSSProperties, Suspense} from "react";
 import {getData} from "@pepfar-react-lib/http-tools";
+import {CircularProgress} from "@material-ui/core";
 // import {Menu} from "./components/menu";
 
-const Menu = React.lazy(() => import('./components/menu') as any);
+const Menu = React.lazy(() => import('./components/menu'));
 
 const styles = {
     root: {
@@ -11,7 +12,10 @@ const styles = {
         right: 9,
         zIndex: 10000,
         fontSize: 13
-    } as CSSProperties
+    } as CSSProperties,
+    loading: {
+        paddingTop: 300
+    }
 };
 
 export type CustomMethod = {name:string, method:()=>void};
@@ -50,9 +54,11 @@ export class TestConsole extends React.Component<{buildName?:string, buildDate:D
         if (process.env.NODE_ENV==='test') return null;
         if(!this.state.isSuperUser) return null;
         return <div style={styles.root}>
-            <Menu open={this.state.menuOpen} onClose={this.toggleMenu} customMethods={customMethods} buildName={this.props.buildName} buildDate={this.props.buildDate}>
-                {this.props.children}
-            </Menu>
+            {this.state.menuOpen && <Suspense fallback={<CircularProgress style={styles.loading}/>}>
+                <Menu open={this.state.menuOpen} onClose={this.toggleMenu} customMethods={customMethods} buildName={this.props.buildName} buildDate={this.props.buildDate}>
+                    {this.props.children}
+                </Menu>
+            </Suspense>}
         </div>;
     }
 }

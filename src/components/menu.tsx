@@ -18,7 +18,7 @@ let DevToolsDrawer = withStyles({
     }
 })(Drawer);
 
-export function Menu({open, customMethods, onClose, buildName, buildDate, children}:{open:boolean, customMethods:CustomMethod[], onClose:()=>void, buildName:string, buildDate:Date, children?}){
+function Menu({open, customMethods, onClose, buildName, buildDate, children}:{open:boolean, customMethods:CustomMethod[], onClose:()=>void, buildName:string, buildDate:Date, children?}){
     return <DevToolsDrawer open={open} anchor='right' onClose={onClose}>
         <Logo/>
         <Divider/>
@@ -32,3 +32,5 @@ export function Menu({open, customMethods, onClose, buildName, buildDate, childr
         {children}
     </DevToolsDrawer>
 }
+
+export default Menu as React.ComponentType<any>;
